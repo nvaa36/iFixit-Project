@@ -1,6 +1,8 @@
 var collection = JSON.parse(localStorage.getItem('collection'));
-if(collection == null)
+if(collection == null){
 	collection = [];
+	localStorage.setItem('collection', JSON.stringify(collection));
+}
 
 function loadList(){
 	var xhr = new XMLHttpRequest();
