@@ -1,0 +1,124 @@
+/*style for the title and subtitle of the website*/
+.maintitle{
+  font-size: 80px;
+  color: #011f4f;
+}
+/*style for entire body*/
+body {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, sans-serif;
+  color: black;
+  background-color: gray;
+  text-align: center;
+}
+/*style for description of website*/
+h1{
+  font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif;
+  font-size: 40;
+  color: #011f4f;
+}
+/*general style for h2*/
+h2{
+  font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif;
+  font-size: 22;
+}
+/*general style for h3*/
+h3{
+  font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif;
+}
+/*style for the link to the top of the page*/
+.toplink{
+  margin: 0 0 0 0;
+  position: fixed;
+  text-align: right;
+  bottom: 15px;
+  right: 15px;
+}
+/*style for the content of the website, everything minus the title*/
+#content{
+  background-color: #5791ed;
+  margin: 0px 10% 50px 10%;
+  border-style: groove;
+  border-width: 15px;
+  border-color: #011f4f;
+  overflow: auto;
+  max-width: 1000px;
+}
+/*style for top navigation bar*/
+.nav{
+  list-style-type: none;
+  margin: 0;
+  overflow: hidden;
+  background-color: #01368c;
+}
+/*style for top navigation bar elements*/
+.navelem{
+  float: left;
+}
+/*style for top navigation bar links*/
+.navlink{
+  display: block;
+  padding: 20px 20px 20px 20px;
+  color: #fff;
+  text-decoration: none;
+  font-size: 16pt;
+  background-color: #01368c;
+}
+/* Change the link color in nav bar on hover */
+li a:hover:not(.active) {
+  background-color: #555;
+  color: #000;
+}
+/* Style for the link to the current page */
+.active {
+  display: block;
+  padding: 20px 20px 20px 20px;
+  text-decoration: none;
+  font-size: 16pt;
+  color: #fff;
+  background-color: #000;
+}
+
+/* Style for the link to the log in page */
+.loginlink {
+  float: right;
+  display: block;
+  padding: 20px 20px 20px 20px;
+  text-decoration: none;
+  font-size: 16pt;
+  color: #000;
+  background-color: #fff;
+}
+
+form {
+  width:500px;
+  margin:50px auto;
+}
+.search {
+  padding:8px 15px;
+  background:rgba(50, 50, 50, 0.2);
+  border:0px solid #dbdbdb;
+}
+.button {
+  position:relative;
+  padding:6px 15px;
+  left:-8px;
+  border:2px solid #207cca;
+  background-color:#207cca;
+  color:#fafafa;
+}
+.button:hover {
+  background-color:#fafafa;
+  color:#207cca;
+}
+
+table {
+  table-layout: fixed;
+}
+td {
+  text-align: center;
+}
+
+.icon {
+  padding: 5px 5px 5px 5px;
+  margin: 5px 5px 5px 5px;
+}

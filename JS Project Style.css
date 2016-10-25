@@ -1,0 +1,87 @@
+/*style for the title and subtitle of the website*/
+.maintitle{
+  font-size: 80px;
+  text-shadow: 1px 1px 7px #fff;
+}
+/*style for entire body*/
+body {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, sans-serif;
+  color: black;
+  background-image: url(dark_embroidery.png);
+  text-align: center;
+}
+/*style for review of 1st book*/
+.text {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, sans-serif;
+  width: 500;
+  color: black;
+  text-align: left;
+  margin: auto;
+  padding: 0 5px 5px 10px;
+}
+/*style for description of website*/
+h1{
+  font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif;
+  font-size: 40;
+  color: #660029;
+}
+/*general style for h2*/
+h2{
+  font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif;
+  font-size: 22;
+}
+/*general style for h3*/
+h3{
+  font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif;
+}
+/*style for the link to the top of the page*/
+.toplink{
+  margin: 0 0 0 0;
+  position: fixed;
+  text-align: right;
+  bottom: 15px;
+  right: 15px;
+}
+/*style for the content of the website, everything minus the title*/
+#content{
+  background-color: #c65381;
+  margin: 0px 10% 50px 10%;
+  border-style: groove;
+  border-width: 15px;
+  border-color: #330014;
+  overflow: auto;
+}
+/*style for top navigation bar*/
+.nav{
+  list-style-type: none;
+  margin: 0;
+  overflow: hidden;
+  background-color: #330014;
+}
+/*style for top navigation bar elements*/
+.navelem{
+  float: left;
+}
+/*style for top navigation bar links*/
+.navlink{
+  display: block;
+  padding: 20px 20px 20px 20px;
+  color: #fff;
+  text-decoration: none;
+  font-size: 16pt;
+  background-color: #330014;
+}
+/* Change the link color in nav bar on hover */
+li a:hover:not(.active) {
+  background-color: #555;
+  color: #000;
+}
+
+.active {
+  display: block;
+  padding: 20px 20px 20px 20px;
+  text-decoration: none;
+  font-size: 16pt;
+  color: #fff;
+  background-color: #000;
+}
