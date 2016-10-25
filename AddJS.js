@@ -1,4 +1,6 @@
 var collection = JSON.parse(localStorage.getItem('collection'));
+if(collection == null)
+	collection = [];
 
 function loadList(){
 	var xhr = new XMLHttpRequest();
