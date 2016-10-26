@@ -6,7 +6,7 @@ if(collection == null){
 
 function loadList(){
 	var xhr = new XMLHttpRequest();
-	xhr.open("GET", "https://www.ifixit.com/api/2.0/guides?limit=200", false);
+	xhr.open("GET", "https://www.ifixit.com/api/2.0/wikis/CATEGORY?limit=200", false);
 	xhr.send();
 	resp = JSON.parse(xhr.response);
 	createTable(resp);
@@ -43,7 +43,7 @@ function createTable(resp){
 			link.appendChild(image);
 		}
 		cell.appendChild(link);
-		cell.title = resp[i].guideid;
+		cell.title = resp[i].title;
 		var text = document.createTextNode(resp[i].title);
 		text.width = "300";
 		cell.appendChild(text);
@@ -77,7 +77,7 @@ function showResults(){
 	var text = document.getElementById("searchQ").value;
 	if(text != null){
 		var xhr = new XMLHttpRequest();
-		text = "https://www.ifixit.com/api/2.0/search/" + text + "?filter=guide&limit=200";
+		text = "https://www.ifixit.com/api/2.0/search/" + text + "?filter=category&limit=200";
 		xhr.open("GET", text, false);
 		xhr.send();
 		resp = JSON.parse(xhr.response);
@@ -128,7 +128,7 @@ function loadCollection(){
 			link.appendChild(image);
 		}
 		cell.appendChild(link);
-		cell.title = col[i].guideid;
+		cell.title = col[i].title;
 		var text = document.createTextNode(col[i].title);
 		text.width = "300";
 		cell.appendChild(text);
@@ -181,7 +181,7 @@ function getCollection() {
 	var xhr = new XMLHttpRequest();
 	var col = new Array();
 	for(var i = 0; i < collection.length; i++){
-		text = "https://www.ifixit.com/api/2.0/guides/" +  collection[i];
+		text = "https://www.ifixit.com/api/2.0/wikis/CATEGORY/" +  collection[i];
 		xhr.open("GET", text, false);
 		xhr.send();
 		resp = JSON.parse(xhr.response);
