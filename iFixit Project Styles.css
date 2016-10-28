@@ -3,6 +3,10 @@
   font-size: 80px;
   color: #011f4f;
 }
+
+body{
+  margin:0;
+}
 /*style for entire body*/
 body {
   font-family: "Gill Sans", "Gill Sans MT", Calibri, sans-serif;
@@ -36,7 +40,7 @@ h3{
 /*style for the content of the website, everything minus the title*/
 #content{
   background-color: #5791ed;
-  margin: 0px 10% 50px 10%;
+  margin: 0px 10% 50px 2%;
   border-style: groove;
   border-width: 15px;
   border-color: #011f4f;
@@ -120,4 +124,28 @@ td {
 .icon {
   padding: 5px 5px 5px 5px;
   margin: 5px 5px 5px 5px;
+}
+
+/*style for navigation bar on the left*/
+#column{
+  position: absolute;
+  border: none;
+  margin: none;
+  top: 0;
+  width: 15%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  background-color: white;
+}
+
+#column li{
+  line-height: 40px;
+  display: block;
+  text-decoration: none;
+  text-align: left;
+  font-size: 12pt;
+}
+#nonside{
+  margin: 0 0 0 15%;
 }
