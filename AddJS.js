@@ -4,29 +4,105 @@ if(collection == null){
 	localStorage.setItem('collection', JSON.stringify(collection));
 }
 
-function loadList(){
+var cats;
+var devices;
+
+function loadSideBar(){
 	var xhr = new XMLHttpRequest();
-	xhr.open("GET", "https://www.ifixit.com/api/2.0/wikis/CATEGORY?limit=200", false);
+	xhr.open("GET", "https://www.ifixit.com/api/2.0/categories?", false);
 	xhr.send();
-	resp = JSON.parse(xhr.response);
-	createTable(resp);
+	cats = JSON.parse(xhr.response);
+	var keys = Object.keys(cats);
+	var list = document.getElementById("column");
+	list.style.color = "blue";
+	makeSideBar(keys, list);
 }
 
-function createTable(resp){
+function makeSideBar(keys, list){
+	for(var i = 0; i < keys.length; i++){
+		var el = document.createElement('li');
+		el.title = keys[i];
+		var div = document.createElement('div');
+		div.innerHTML = "<p title='" + keys[i] + "'>" + keys[i] + "</p>";
+		el.appendChild(div);
+		list.appendChild(el);
+	}
+	createColClicks(list);
+}
+
+function createColClicks(list){
+	var items = list.getElementsByTagName('li');
+	for(var i = 0; i < items.length; i++){
+		var item = items[i];
+		var div = item.firstChild;
+		div.addEventListener("click", function(){showCat(this.parentElement)});
+	}
+}
+
+function showCat(item){
+	var xhr = new XMLHttpRequest();
+	xhr.open("GET", "https://www.ifixit.com/api/2.0/wikis/CATEGORY/"+item.title, false);
+	xhr.send();
+	var resp = JSON.parse(xhr.response);
+	devices = resp.children;
+	localStorage.setItem('devices', JSON.stringify(devices));
+	var subli = document.createElement('ul');
+	item.appendChild(subli);
+	var ances = resp.ancestors;
+	var subcat = cats;
+	for(var i = ances.length - 2; i >= 0; i--){
+		console.log(subcat[ances[i].title]);
+		subcat = subcat[ances[i].title];
+	}
+	subcat = subcat[item.title];
+	editSideBar(subcat, subli);
+	createTable(devices);
+}
+
+function editSideBar(subcat, list){
+	var names = Object.keys(subcat);
+	for(var i = 0; i < names.length; i++){
+		if(Object.keys(subcat[names[i]]).length > 0){
+			var el = document.createElement('li');
+			el.title = names[i];
+			var div = document.createElement('div');
+			div.innerHTML = "<p title='" + names[i] + "'>" + names[i] + "</p>";
+			el.appendChild(div);
+			list.appendChild(el);
+		}
+	}
+	createColClicks(list);
+}
+
+function loadList(){
+	devices = JSON.parse(localStorage.getItem('devices'));
+	if(devices == null || devices.length == 0){
+		devices = [];
+		var xhr = new XMLHttpRequest();
+		xhr.open("GET", "https://www.ifixit.com/api/2.0/wikis/CATEGORY?limit=200", false);
+		xhr.send();
+		devices = JSON.parse(xhr.response);
+	}
+	localStorage.setItem('devices', JSON.stringify(devices));
+	createTable(devices);
+}
+
+function createTable(devices){
 	var table = document.getElementById("table");
+	table.innerHTML = "";
 	table.width = "100%";
 	var row = table.insertRow(-1);
-	for (var i = 0; i < resp.length; i++) {
+	for (var i = 0; i < devices.length; i++) {
 		if(i % 3 == 0 && i != 0){
 			row = table.insertRow(-1);
 		}
 		var cell = row.insertCell(-1);
 		cell.innerHTML = "<style = 'text-align: center>";
 		cell.width = "33%";
-		var img = resp[i].image;
+		var img = devices[i].image;
 		var link = document.createElement('a');
-		link.href = resp[i].url;
-		link.title = resp[i].title;
+		link.href = devices[i].url;
+		link.title = devices[i].title;
 		if(img != null){
 			var image = document.createElement('img');
 			image.src = img.standard;
@@ -43,8 +119,8 @@ function createTable(resp){
 			link.appendChild(image);
 		}
 		cell.appendChild(link);
-		cell.title = resp[i].title;
-		var text = document.createTextNode(resp[i].title);
+		cell.title = devices[i].title;
+		var text = document.createTextNode(devices[i].title);
 		text.width = "300";
 		cell.appendChild(text);
 	}
@@ -72,8 +148,6 @@ function createClicks(){
 }
 
 function showResults(){
-	var table = document.getElementById("table");
-	table.innerHTML = "";
 	var text = document.getElementById("searchQ").value;
 	if(text != null){
 		var xhr = new XMLHttpRequest();
@@ -81,7 +155,9 @@ function showResults(){
 		xhr.open("GET", text, false);
 		xhr.send();
 		resp = JSON.parse(xhr.response);
-		createTable(resp.results);
+		devices = resp.results;
+		localStorage.setItem('devices', JSON.stringify(devices));
+		createTable(devices);
 	}
 	else
 		window.alert("no results found");
@@ -164,7 +240,6 @@ function removeCell(cell){
 			collection.splice(i, 1);
 			var tbl = document.getElementById("table");
 			tbl.rows[row].cells[col].innerHTML = '';
-			console.log(collection.length + ' ' + row + ' ' + col);
 		}
 		if(col % 3 == 0 && col != 0)
 			row++;
@@ -184,8 +259,8 @@ function getCollection() {
 		text = "https://www.ifixit.com/api/2.0/wikis/CATEGORY/" +  collection[i];
 		xhr.open("GET", text, false);
 		xhr.send();
-		resp = JSON.parse(xhr.response);
-		col.push(resp);
+		devices = JSON.parse(xhr.response);
+		col.push(devices);
 	}
 	return col;
 }
