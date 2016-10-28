@@ -3,13 +3,16 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>iFixit Guide Collector</title>
+  <title>iFixit Device Collector</title>
   <link rel="stylesheet" href="iFixit Project Styles.css">
 </head>
 <body>
   <script type="text/javascript" src="AddJS.js"></script>
+  <!--List of categories that can be selected-->
+  <ul id = "column"></ul>
 	<a name = "top"></a>
     <!--top navigation bar-->
+    <div id = "nonside">
     <ul class="nav">
       <li class="navelem"><a class="navlink" href="index.html">Home</a></li>
       <li class="navelem"><a class="active" href="Add.html">Add a Device</a></li>
@@ -20,7 +23,7 @@
     <!--img of the fancy, calligraphy title of the website-->
     <h1 class = "maintitle">iFixit Device Collector</h1><!--Title of the website-->
     <h2 style="color: #011f4f; font-size:25pt;">Click on a device to view the documentation. Click on the plus button to add it to your collection</h2><!--Description of the website-->
-	<div id="content">
+    <div id="content">
     <div style = "width: 100%">
     <form style = "width: 100%" action="#" onsubmit="showResults()">
       <input type="button" class = "button" value="Search" onclick="showResults();" style = "float: right;">
@@ -30,8 +33,10 @@
     <table id = "table">
     </table>
     <script type="text/javascript">
-      loadList();
+        loadList();
+        loadSideBar();
     </script>
+    </div>
     </div>
     <!--hyperlink to the top of the page-->
     <a href="#top" class="toplink"><img src=http://www.clker.com/cliparts/8/7/Y/H/W/e/up-arrow-circle-md.png height="50"></a>
